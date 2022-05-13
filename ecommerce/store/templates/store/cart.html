@@ -1,0 +1,48 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content%}
+    <div class='box-element'>
+        <div>
+            <a href="{% url 'store' %}" class='btn btn-outline-dark'> &#x2190; Continue Shopping </a>
+        </div>
+        <div class='d-flex justify-content-between m-4' >
+            <div class='d-flex col-5 justify-content-between '>
+                <p>Items: <strong>{{Order.get_total_count}}</strong></p>
+                <p>Total: <strong>${{Order.get_cart_total|floatformat:2}}</strong></p>
+            </div>
+            {% if Order.get_total_count == 0 %}
+            <a href="{% url 'checkout' %}" class='btn btn-secondary' style='pointer-events: None;opacity:0.5;'>Checkout</a>
+            {% else %}
+            <a href="{% url 'checkout' %}" class='btn btn-success'>Checkout</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class='box-element'>
+        <div class='cart-row'>
+            <div style='flex:2'></div>
+            <div style='flex:2'><strong>Item</strong></div>
+            <div style='flex:1'><strong>Price</strong></div>
+            <div style='flex:1'><strong>Quantity</strong></div>
+            <div style='flex:1'><strong>Total</strong></div>
+ 
+        </div>
+        {% for item in items %}
+        <div class='cart-row'>
+            <div style='flex:2'><img class='row-image' src="{{item.product.imageURL}}"></img></div>
+            <div style='flex:2'>{{item.product}}</div>
+            <div style='flex:1'>${{item.product.price|floatformat:2}}</div>
+            <div style='flex:1'>
+                <p class='quantity'>{{item.quantity}}</p>
+                <div class='quantity'>
+                    <img class='chg-quantity update-cart' data-product={{item.product.id}} data-action='add' src="{% static 'images/arrow-up.png'  %}">
+                    <img class='chg-quantity update-cart' data-product={{item.product.id}} data-action='remove' src="{% static 'images/arrow-down.png'  %}">
+                </div>
+            </div>
+            <div style='flex:1'>${{item.get_total|floatformat:2}}</div>
+        
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock content%}
+

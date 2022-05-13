@@ -1,0 +1,19 @@
+{% extends 'store/main.html' %}
+
+{% block content%}
+
+<div class='box-element'>
+    <div class='product '>
+        <div class='col-4 '>
+            <img class='product-view-box' src='{{product.imageURL}}'></img>
+            <p class='h1 mx-2 '> {{product.name}}</p>
+            <p class='h5 mx-2 '> &#8226; {{product.feature1}}</p>
+            <p class='h5 mx-2 '> &#8226; {{product.feature2}}</p>
+            <p class='h5 mx-2 '> &#8226; {{product.feature3}}</p>
+            <p class='h5 mx-2 '> &#8226; {{product.feature4}}</p>
+        </div>
+        <div class='col-7'>
+        </div>
+    </div>
+</div>
+{% endblock %}
