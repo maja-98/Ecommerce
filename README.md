@@ -5,10 +5,10 @@ Add My Orders - done
 
 update date ordered while order is completed- done
 
-product-view - In progress
+product-view - done
 
 
-Search box - To be added
+Search box - In progress
 
 User signup - To be added
 
