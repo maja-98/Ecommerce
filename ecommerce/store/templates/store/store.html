@@ -1,7 +1,12 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content%}
-    <div class='d-flex row'>
+        <form class='d-flex justify-content-center' id='search-form'>
+            <input type="text" class="p-2 m-2 width-50" name='q' id="Search"  placeholder="Search Products...">
+            <button class='btn btn-success search-button m-2  fs-6 ' type='submit'>Search</button>
+            <button id='reset-button' class='btn btn-outline-secondary  search-button m-2  fs-6 ' type='reset'>Reset</button>
+        </form>
+        <div class='d-flex row'>
         {% for product in products %}
         <div class='col-lg-4'>
             
@@ -17,5 +22,12 @@
         </div>
         {%endfor%}
     </div>
-    
+    <script>
+        function resetForm(){
+            var form = document.getElementById('search-form')
+            form.submit()
+        }
+        var btn = document.getElementById('reset-button');
+        btn.addEventListener("click",resetForm)
+    </script>
 {% endblock content%}

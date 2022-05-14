@@ -4,6 +4,7 @@ from .models import *
 import json
 from datetime import datetime
 from .utils import *
+from django.db.models import Q
 
 def debug(*args):
     print('\n')
@@ -11,7 +12,10 @@ def debug(*args):
     print('\n')
 # Create your views here.
 def store(request):
-    products = Product.objects.all()
+    q= request.GET.get('q') if request.GET.get('q')!=None else ''
+    products = Product.objects.filter(
+        Q(name__icontains=q)
+    )
     items,order=cartData(request)
     context = {'products':products,'Order':order}
     
