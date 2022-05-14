@@ -3,16 +3,59 @@
 {% block content%}
 
 <div class='box-element'>
-    <div class='product '>
-        <div class='col-4 '>
+    <div class='product row'>
+        <div class='col-6 '>
             <img class='product-view-box' src='{{product.imageURL}}'></img>
-            <p class='h1 mx-2 '> {{product.name}}</p>
-            <p class='h5 mx-2 '> &#8226; {{product.feature1}}</p>
-            <p class='h5 mx-2 '> &#8226; {{product.feature2}}</p>
-            <p class='h5 mx-2 '> &#8226; {{product.feature3}}</p>
-            <p class='h5 mx-2 '> &#8226; {{product.feature4}}</p>
+            <div class='ms-2 product-view-box'>
+                <p class='h2   '> {{product.name}}</p>
+                <hr >
+                <ul>
+                    <li class='fs-5'>  {{product.feature1}}</li>
+                    <li class='fs-5'>  {{product.feature2}}</li>
+                    <li class='fs-5'>  {{product.feature3}}</li>
+                    <li class='fs-5'>  {{product.feature4}}</li>
+                </ul>
+            </div>
         </div>
-        <div class='col-7'>
+        <div class='col-6'>
+            <div class='product-view-box'>
+                <h4>Payement Methods</h4>
+                <hr/>
+                {%if product.digital %}
+                <p class='bg-light'> Item is Digital, Online Mode only Available</p>
+                <div class="form-check">
+                    <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <label class="form-check-label fs-5" for="flexRadioDefault1">
+                    Online Payement
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault2" disabled>
+                    <label class="form-check-label fs-5" for="flexRadioDefault2">
+                    Cash on Delivery
+                    </label>
+                  </div>
+                {% else %}
+                <p class='bg-light'> Cash on Delivery Available for this item</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <label class="form-check-label fs-5" for="flexRadioDefault1">
+                    Online Payement
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input disable" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+                    <label class="form-check-label fs-5" for="flexRadioDefault2">
+                    Cash on Delivery
+                    </label>
+                  </div>
+                {% endif %}
+            </div>
+            <div class='product-view-box'>
+                <h5>Item Description</h5>
+                <hr/>
+                <p class='fs-6'>{{product.description}}</p>
+            </div>
         </div>
     </div>
 </div>
