@@ -7,8 +7,8 @@ update date ordered while order is completed- done
 
 product-view - done
 
+Search box -done
 
-Search box - In progress
 
 User signup - To be added
 
