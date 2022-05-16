@@ -28,6 +28,9 @@ h1,h2,h3,h4,h5,h6{
 	font-weight: bolder;
 	
 }
+.bg-white{
+	background-color: white;
+}
 .box-element{
 	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
 	background-color: #fff;

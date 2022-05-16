@@ -1,0 +1,29 @@
+{% extends 'store/main.html' %}
+{% block content%}
+<div class='bg-white p-5 d-flex flex-column justify-content-center align-items-center'>
+    <div class='p-2 bg-secondary width-50 rounded container d-flex justify-content-center border-1'>
+        <h1 class=' h3 text-light'>Sign Up</h1>
+    </div>
+    <div class='border border-3 width-50 p-2'>
+        <form >
+            {% for field in form %}
+            <div class="mb-1">
+            <label for="{{field.label}}" class=" form-label "><i>{{field.label}}</i></label>
+            {% if field.label == 'Email address' %}
+            <input type="email" class="form-control" id="{{field.label}}" aria-describedby="emailHelp">
+            {% elif field.label == 'Password' or field.label == 'Password confirmation' %}
+            <input type="password" class="form-control" id="{{field.label}}" aria-describedby="emailHelp">
+            {% else %}
+            <input type="text" class="form-control" id="{{field.label}}" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">{{field.help_text}}</div>
+            {% endif %}
+            
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success rounded mt-2">Submit</button>
+        </form>
+    </div>
+</div>
+  
+
+{% endblock content %}

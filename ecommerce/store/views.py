@@ -5,6 +5,8 @@ import json
 from datetime import datetime
 from .utils import *
 from django.db.models import Q
+from .forms import CustomerForm
+from django.contrib.auth.decorators import login_required
 
 def debug(*args):
     print('\n')
@@ -12,9 +14,11 @@ def debug(*args):
     print('\n')
 # Create your views here.
 def store(request):
-    q= request.GET.get('q') if request.GET.get('q')!=None else ''
+    q= request.GET.get('q').lstrip('0') if request.GET.get('q') !=None else ''
+
     products = Product.objects.filter(
-        Q(name__icontains=q)
+        Q(name__icontains=q) |
+        Q(id__icontains=q)
     )
     items,order=cartData(request)
     context = {'products':products,'Order':order}
@@ -40,6 +44,14 @@ def productView(request,id):
     context = {'product':product,'Order':order}
     
     return render(request,'store/product-view.html',context)
+
+def login(request):
+    items,order=cartData(request)
+    form = CustomerForm()
+    debug(form)
+    return render(request,'store/login.html',context={'form':form,'Order':order})
+
+@login_required(login_url='login')
 def myOrders(request):
     items,order=cartData(request)
     if request.user.is_authenticated:
